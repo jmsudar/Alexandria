@@ -1,10 +1,7 @@
 ﻿namespace Alexandria.Library;
 
-public class Program
+public class Library
 {
-    public static void Main(string[] args)
-    {
-        
-    }
+    
 }
 
