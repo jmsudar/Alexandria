@@ -7,4 +7,8 @@
     <OutputType>Library</OutputType>
     <NoDefaultLaunchSettingsFile>true</NoDefaultLaunchSettingsFile>
   </PropertyGroup>
+  <ItemGroup>
+    <None Remove="Test\Foo\" />
+    <None Remove="Test\Bar\" />
+  </ItemGroup>
 </Project>

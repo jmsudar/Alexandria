@@ -1,0 +1,2 @@
+﻿Widget
+A Widget serves as a catch-all example when someone, typically the same sort of person who describes themselves as "old school," gives a description of a manufacturing process. For example, a teacher might refer to a math story problem regarding a "widget maker" at a local factory.
