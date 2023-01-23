@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using Alexandria.Library.Interface;
 
 namespace Alexandria.Library.Object
@@ -20,6 +21,14 @@ namespace Alexandria.Library.Object
 
         public List<string> Directories { get; set; }
         public List<string> Files { get; set; }
+    }
+
+    public class Constants
+    {
+        public static Dictionary<string, string> pathSeparators = new Dictionary<string, string>()
+        {
+            { "web", "/" }
+        };
     }
 }
 
