@@ -34,4 +34,24 @@ public class MethodsTests
 
         Assert.IsTrue(test.Files.Count() == 0);
     }
+
+    [TestMethod]
+    public void TestPathBuilder_BasicAsssembly()
+    {
+        string proof = "home/page";
+
+        var test = SUT.Methods.PathBuilder("home", "page", "web");
+
+        Assert.AreEqual(proof, test);
+    }
+
+    [TestMethod]
+    public void TestPathBuilder_WebPath()
+    {
+        string proof = "home/page";
+
+        var test = SUT.Methods.BuildWebPath("home", "page");
+
+        Assert.AreEqual(proof, test);
+    }
 }
