@@ -54,4 +54,34 @@ public class MethodsTests
 
         Assert.AreEqual(proof, test);
     }
+
+    [TestMethod]
+    public void TestGetNextFolder_RetrieveNextFolderFromTestDir()
+    {
+        string proof = "TestSource";
+
+        var test = SUT.Methods.GetNextFolder(testDir);
+
+        Assert.AreEqual(proof, test);
+    }
+
+    [TestMethod]
+    public void TestMapKeyword_GetListingInTestDir()
+    {
+        string Foo = "Foo";
+        string Bar = "Bar";
+
+        var proof = new Dictionary<string, string>()
+        {
+            {Foo, "/TestSource/Foo" },
+            {Bar, "/TestSource/Bar" }
+        };
+
+        var test = new Dictionary<string, string>();
+
+        SUT.Methods.MapKeyword(testDir, "/TestSource", ref test);
+
+        Assert.AreEqual(proof[Foo], test[Foo]);
+        Assert.AreEqual(proof[Bar], test[Bar]);
+    }
 }
