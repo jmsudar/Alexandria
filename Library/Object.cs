@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Runtime.InteropServices;
 using Alexandria.Library.Interface;
 
 namespace Alexandria.Library.Object
@@ -27,7 +28,8 @@ namespace Alexandria.Library.Object
     {
         public static Dictionary<string, string> pathSeparators = new Dictionary<string, string>()
         {
-            { "web", "/" }
+            { "web", "/" },
+            { "unix", "/"}
         };
     }
 }
