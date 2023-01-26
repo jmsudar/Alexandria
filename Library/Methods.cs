@@ -6,21 +6,32 @@ namespace Alexandria.Library.Methods
 {
 	public static class Methods
 	{
-		public static Catalog GetCatalog(string FilePath) => new Catalog(System.IO.Directory.GetDirectories(FilePath), System.IO.Directory.GetFiles(FilePath));
+		public static Catalog BuildCatalog(string sourcePath)
+		{
+			var mappingCollection = new Dictionary<string, List<string>>();
+
+			MapKeyword(sourcePath, string.Empty, ref mappingCollection);
+
+			return new Catalog(sourcePath, mappingCollection);
+		}
+		
+		public static CatalogTraversal GetCatalog(string filePath) => new CatalogTraversal(System.IO.Directory.GetDirectories(filePath), System.IO.Directory.GetFiles(filePath));
 
 		public static string PathBuilder(string root, string nextHop, string platform) => root + Constants.pathSeparators[platform] + nextHop;
 
 		public static string BuildWebPath(string root, string nextHop) => PathBuilder(root, nextHop, "web");
 
-		public static void MapKeyword(string filePath, string root, ref Dictionary<string,string> MappingCollection)
+		public static void MapKeyword(string filePath, string root, ref Dictionary<string, List<string>> MappingCollection)
 		{
 			var listing = GetCatalog(filePath);
 
+			var nextHop = PathBuilder(root, GetNextFolder(filePath), GetOSSeparator());
+
+			MappingCollection.Add(nextHop, listing.Files);
+
 			foreach (var directory in listing.Directories)
 			{
-				var nextFolder = GetNextFolder(directory);
-
-				MappingCollection.Add(nextFolder, PathBuilder(root, nextFolder, GetOSSeparator()));
+				MapKeyword(directory, nextHop, ref MappingCollection);
             }
         }
 

@@ -1,2 +1,2 @@
-﻿Hello, World!
+﻿Foo (and Bar)
 The directory is used as the name for the term you are defining with your Alexandria Library. The first line of your Definition.txt file is the header of the article. Your first paragraph will be the blurb showing in both article previews and the cli glimpse, and should thus serve as a concise refresher or summary for the subject.

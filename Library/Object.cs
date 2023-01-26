@@ -11,10 +11,20 @@ namespace Alexandria.Library.Object
         public string DirectoryRoot { get; set; }
     }
 
-    [Serializable]
     public class Catalog : ICatalog
     {
-        public Catalog(string[] directories, string[] files)
+        public Catalog(string sourcePath, Dictionary<string, List<string>> mappingCollection)
+        {
+            MappingCollection = mappingCollection == null ? new Dictionary<string, List<string>>() : new Dictionary<string, List<string>>(mappingCollection);
+        }
+
+        public string SourcePath { get; set; }
+        public Dictionary<string, List<string>> MappingCollection { get; set; }
+    }
+
+    public class CatalogTraversal : ICatalogTraversal
+    {
+        public CatalogTraversal(string[] directories, string[] files)
         {
             Directories = files == null ? new List<string>() : new List<string>(directories);
             Files = files == null ? new List<string>() : new List<string>(files);

@@ -1,4 +1,6 @@
-﻿using SUT = Alexandria.Library.Methods;
+﻿using System.Collections.Generic;
+using Alexandria.Library.Object;
+using SUT = Alexandria.Library.Methods;
 
 namespace Library_UnitTests;
 
@@ -28,11 +30,9 @@ public class MethodsTests
     [TestMethod]
     public void TestGetCatalog_FileList()
     {
-        string[] proof = new string[] { testDir + "/Foo/Definition.txt", testDir + "/Bar/Definition.txt" };
-
         var test = SUT.Methods.GetCatalog(testDir);
 
-        Assert.IsTrue(test.Files.Count() == 0);
+        Assert.IsTrue(test.Files.Count() == 1);
     }
 
     [TestMethod]
@@ -68,20 +68,45 @@ public class MethodsTests
     [TestMethod]
     public void TestMapKeyword_GetListingInTestDir()
     {
-        string Foo = "Foo";
-        string Bar = "Bar";
+        string Foo = "/TestSource/Foo";
+        string Bar = "/TestSource/Bar";
 
-        var proof = new Dictionary<string, string>()
+        var proof = new Dictionary<string, List<string>>()
         {
-            {Foo, "/TestSource/Foo" },
-            {Bar, "/TestSource/Bar" }
+            {Foo, new List<string>() { testDir + Foo + "/Definition.txt" } },
+            {Bar, new List<string>() { testDir + Bar + "/Definition.txt" } }
         };
 
-        var test = new Dictionary<string, string>();
+        var test = new Dictionary<string, List<string>>();
 
-        SUT.Methods.MapKeyword(testDir, "/TestSource", ref test);
+        SUT.Methods.MapKeyword(testDir + "/Foo", "/TestSource", ref test);
+        SUT.Methods.MapKeyword(testDir + "/Bar", "/TestSource", ref test);
 
-        Assert.AreEqual(proof[Foo], test[Foo]);
-        Assert.AreEqual(proof[Bar], test[Bar]);
+        Assert.AreEqual(proof[Foo].Count(), test[Foo].Count());
+        Assert.AreEqual(proof[Bar].Count(), test[Bar].Count());
+    }
+
+    [TestMethod]
+    public void TestBuildCatalog_BuildTestSourceCatalog()
+    {
+        string Foo = "/TestSource/Foo";
+        string Bar = "/TestSource/Bar";
+        string HelloWorld = "/TestSource/Bar/HelloWorld";
+
+        var proofMapping = new Dictionary<string, List<string>>()
+        {
+            {Foo, new List<string>() { testDir + Foo + "/Definition.txt" } },
+            {Bar, new List<string>() { testDir + Bar + "/Definition.txt" } },
+            {HelloWorld, new List<string>() { testDir + HelloWorld + "/Definition.txt" } }
+        };
+
+        var proof = new Catalog(testDir, proofMapping);
+
+        var test = SUT.Methods.BuildCatalog(testDir);
+
+        Assert.AreEqual(proof.SourcePath, test.SourcePath);
+        Assert.AreEqual(proof.MappingCollection[Foo].Count(), test.MappingCollection[Foo].Count());
+        Assert.AreEqual(proof.MappingCollection[Bar].Count(), test.MappingCollection[Bar].Count());
+        Assert.AreEqual(proof.MappingCollection[HelloWorld].Count(), test.MappingCollection[HelloWorld].Count());
     }
 }
