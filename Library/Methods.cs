@@ -1,5 +1,6 @@
 ﻿using System;
 using System.IO;
+using System.Reflection.Metadata;
 using Alexandria.Library.Object;
 
 namespace Alexandria.Library.Methods
@@ -14,10 +15,36 @@ namespace Alexandria.Library.Methods
 
 			return new Catalog(sourcePath, mappingCollection);
 		}
-		
+
 		public static CatalogTraversal GetCatalog(string filePath) => new CatalogTraversal(System.IO.Directory.GetDirectories(filePath), System.IO.Directory.GetFiles(filePath));
 
-		public static string PathBuilder(string root, string nextHop, string platform) => root + Constants.pathSeparators[platform] + nextHop;
+		public static void OutputContent(string destination, string content)
+		{
+			string destinationType = GetDestinationType(destination);
+
+            if (destinationType.Equals(Constants.FileTypes.Web))
+			{
+				//TODO
+			}
+			else if (destinationType.Equals(Constants.FileTypes.File))
+			{
+				System.IO.File.WriteAllText(destination, content);
+			}
+		}
+
+		public static string GetDestinationType(string destination)
+		{
+            if (destination.ToLower().Contains("http") | destination.ToLower().Contains("https"))
+            {
+				return Constants.FileTypes.Web;
+            }
+            else
+            {
+				return Constants.FileTypes.File;
+            }
+        }
+
+		public static string PathBuilder(string root, string nextHop, string platform) => root + Constants.PathSeparators[platform] + nextHop;
 
 		public static string BuildWebPath(string root, string nextHop) => PathBuilder(root, nextHop, "web");
 

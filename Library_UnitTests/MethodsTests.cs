@@ -109,4 +109,34 @@ public class MethodsTests
         Assert.AreEqual(proof.MappingCollection[Bar].Count(), test.MappingCollection[Bar].Count());
         Assert.AreEqual(proof.MappingCollection[HelloWorld].Count(), test.MappingCollection[HelloWorld].Count());
     }
+
+    [TestMethod]
+    public void TestGetDestinationType_ValidHTTP()
+    {
+        string destination = "http://example.com/file.html";
+
+        var proof = "web";
+
+        Assert.AreEqual(proof, SUT.Methods.GetDestinationType(destination));
+    }
+
+    [TestMethod]
+    public void TestGetDestinationType_ValidHTTPS()
+    {
+        string destination = "https://example.com/file.html";
+
+        var proof = "web";
+
+        Assert.AreEqual(proof, SUT.Methods.GetDestinationType(destination));
+    }
+
+    [TestMethod]
+    public void TestGetDestinationType_ValidUnixfile()
+    {
+        string destination = "/Users/user/output/file.html";
+
+        var proof = "file";
+
+        Assert.AreEqual(proof, SUT.Methods.GetDestinationType(destination));
+    }
 }
