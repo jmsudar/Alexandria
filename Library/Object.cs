@@ -36,11 +36,17 @@ namespace Alexandria.Library.Object
 
     public class Constants
     {
-        public static Dictionary<string, string> pathSeparators = new Dictionary<string, string>()
+        public static Dictionary<string, string> PathSeparators = new Dictionary<string, string>()
         {
             { "web", "/" },
             { "unix", "/"}
         };
+
+        public static class FileTypes
+        {
+            public static string Web = "web";
+            public static string File = "file";
+        }
     }
 }
 
