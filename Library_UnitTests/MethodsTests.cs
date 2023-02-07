@@ -7,8 +7,14 @@ namespace Library_UnitTests;
 [TestClass]
 public class MethodsTests
 {
-    string testDir;
+    /// <summary>
+    /// The path to the test directory on your development machine
+    /// </summary>
+    string? testDir;
 
+    /// <summary>
+    /// Initializes the test by getting the source path for the test directory
+    /// </summary>
     [TestInitialize]
     public void Initialize()
     {
@@ -16,25 +22,34 @@ public class MethodsTests
         
     }
 
+    /// <summary>
+    /// Tests Catalog method to get a directory list at a given path
+    /// </summary>
     [TestMethod]
     public void TestGetCatalog_DirectoryList()
     {
         string[] proof = new string[] { testDir + "/Foo", testDir + "/Bar" };
 
-        var test = SUT.Methods.GetCatalog(testDir);
+        var test = SUT.Methods.BuildCatalogTraversal(testDir);
 
         Assert.AreEqual(proof[0], test.Directories[0]);
         Assert.AreEqual(proof[1], test.Directories[1]);
     }
 
+    /// <summary>
+    /// Tests Catalog method to get a file list at a given path
+    /// </summary>
     [TestMethod]
     public void TestGetCatalog_FileList()
     {
-        var test = SUT.Methods.GetCatalog(testDir);
+        var test = SUT.Methods.BuildCatalogTraversal(testDir);
 
         Assert.IsTrue(test.Files.Count() == 1);
     }
 
+    /// <summary>
+    /// Tests Path Builder method to create a relative path
+    /// </summary>
     [TestMethod]
     public void TestPathBuilder_BasicAsssembly()
     {
@@ -45,6 +60,9 @@ public class MethodsTests
         Assert.AreEqual(proof, test);
     }
 
+    /// <summary>
+    /// Tests Web specific Path Builder method
+    /// </summary>
     [TestMethod]
     public void TestPathBuilder_WebPath()
     {
@@ -55,16 +73,22 @@ public class MethodsTests
         Assert.AreEqual(proof, test);
     }
 
+    /// <summary>
+    /// Tests method to get directory name in a Catalog
+    /// </summary>
     [TestMethod]
-    public void TestGetNextFolder_RetrieveNextFolderFromTestDir()
+    public void TestGetNextFolder_RetrieveDirectoryNameFromTestDir()
     {
         string proof = "TestSource";
 
-        var test = SUT.Methods.GetNextFolder(testDir);
+        var test = SUT.Methods.GetDirectoryName(testDir);
 
         Assert.AreEqual(proof, test);
     }
 
+    /// <summary>
+    /// Tests method to map relative path to file list 
+    /// </summary>
     [TestMethod]
     public void TestMapKeyword_GetListingInTestDir()
     {
@@ -73,8 +97,8 @@ public class MethodsTests
 
         var proof = new Dictionary<string, List<string>>()
         {
-            {Foo, new List<string>() { testDir + Foo + "/Definition.txt" } },
-            {Bar, new List<string>() { testDir + Bar + "/Definition.txt" } }
+            {Foo, new List<string>() { "Definition.txt" } },
+            {Bar, new List<string>() { "Definition.txt" } }
         };
 
         var test = new Dictionary<string, List<string>>();
@@ -86,6 +110,9 @@ public class MethodsTests
         Assert.AreEqual(proof[Bar].Count(), test[Bar].Count());
     }
 
+    /// <summary>
+    /// Test method to build a collection of relative paths and files found at said path
+    /// </summary>
     [TestMethod]
     public void TestBuildCatalog_BuildTestSourceCatalog()
     {
@@ -95,9 +122,9 @@ public class MethodsTests
 
         var proofMapping = new Dictionary<string, List<string>>()
         {
-            {Foo, new List<string>() { testDir + Foo + "/Definition.txt" } },
-            {Bar, new List<string>() { testDir + Bar + "/Definition.txt" } },
-            {HelloWorld, new List<string>() { testDir + HelloWorld + "/Definition.txt" } }
+            {Foo, new List<string>() { "Definition.txt" } },
+            {Bar, new List<string>() { "Definition.txt" } },
+            {HelloWorld, new List<string>() { "Definition.txt" } }
         };
 
         var proof = new Catalog(testDir, proofMapping);
@@ -110,6 +137,9 @@ public class MethodsTests
         Assert.AreEqual(proof.MappingCollection[HelloWorld].Count(), test.MappingCollection[HelloWorld].Count());
     }
 
+    /// <summary>
+    /// Test method to determine if a destination is a valid http address
+    /// </summary>
     [TestMethod]
     public void TestGetDestinationType_ValidHTTP()
     {
@@ -120,6 +150,9 @@ public class MethodsTests
         Assert.AreEqual(proof, SUT.Methods.GetDestinationType(destination));
     }
 
+    /// <summary>
+    /// Test method to determine if a destination is a valid https address
+    /// </summary>
     [TestMethod]
     public void TestGetDestinationType_ValidHTTPS()
     {
@@ -130,6 +163,9 @@ public class MethodsTests
         Assert.AreEqual(proof, SUT.Methods.GetDestinationType(destination));
     }
 
+    /// <summary>
+    /// Test method to determine if a destionation is a valid Unix-style filepath
+    /// </summary>
     [TestMethod]
     public void TestGetDestinationType_ValidUnixfile()
     {
