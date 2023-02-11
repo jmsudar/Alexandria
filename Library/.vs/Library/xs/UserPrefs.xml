@@ -1,25 +1,39 @@
 ﻿<Properties StartupConfiguration="{5F74E0B2-8CD7-4A92-80B8-0A89709BF622}|Default">
-  <MonoDevelop.Ide.Workbench ActiveDocument="Library.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="../Library_UnitTests/MethodsTests.cs">
     <Files>
-      <File FileName="Methods.cs" Line="13" Column="39" />
-      <File FileName="Interface.cs" Line="14" Column="3" />
-      <File FileName="Object.cs" Line="39" Column="64" />
-      <File FileName="Library.cs" Line="5" Column="5" />
-      <File FileName="../Library_UnitTests/MethodsTests.cs" Line="105" Column="44" />
+      <File FileName="Methods.cs" />
+      <File FileName="Interface.cs" />
+      <File FileName="Object.cs" />
+      <File FileName="Library.cs" />
+      <File FileName="../Library_UnitTests/MethodsTests.cs" Line="121" Column="58" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
         <State name="__root__">
           <Node name="Library" expanded="True">
-            <Node name="Library" expanded="True" />
-            <Node name="Library_UnitTests" expanded="True" />
+            <Node name="Library" expanded="True">
+              <Node name="Dependencies" expanded="True">
+                <Node name="FrameworkReferences" expanded="True" />
+              </Node>
+            </Node>
+            <Node name="Library_UnitTests" expanded="True">
+              <Node name="Dependencies" expanded="True">
+                <Node name="FrameworkReferences" expanded="True" />
+                <Node name="PackageDependencies" expanded="True" />
+                <Node name="ProjectDependencies" expanded="True" />
+              </Node>
+            </Node>
           </Node>
         </State>
       </Pad>
       <Pad Id="MonoDevelop.UnitTesting.TestPad">
         <State name="__root__">
           <Node name="Library" expanded="True">
-            <Node name="Library_UnitTests" expanded="True" />
+            <Node name="Library_UnitTests" expanded="True">
+              <Node name="Library_UnitTests" expanded="True">
+                <Node name="MethodsTests" expanded="True" />
+              </Node>
+            </Node>
           </Node>
         </State>
       </Pad>
@@ -27,7 +41,9 @@
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.ItemProperties.Library PreferredExecutionTarget="MonoDevelop.Default" />
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
-    <BreakpointStore />
+    <BreakpointStore>
+      <Breakpoint file="/Users/sudar/Dropbox/Programming/Alexandria/Library/_UnitTests/MethodsTests.cs" relfile="_UnitTests/MethodsTests.cs" line="134" column="1" />
+    </BreakpointStore>
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
   <MonoDevelop.Ide.ItemProperties.Library__UnitTests PreferredExecutionTarget="MonoDevelop.Default" />
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />
