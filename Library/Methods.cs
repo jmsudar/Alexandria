@@ -1,6 +1,7 @@
 ﻿using System;
 using System.IO;
 using System.Reflection.Metadata;
+using System.Runtime.InteropServices;
 using Alexandria.Library.Object;
 
 namespace Alexandria.Library.Methods
@@ -119,8 +120,9 @@ namespace Alexandria.Library.Methods
         /// Gets the OS separator for the current system
         /// </summary>
         /// <returns>The system type, for mapping the OS separator</returns>
-        //TODO: build this out to not just return Unix
-        public static string GetOSSeparator() => "unix";
+        public static string GetOSSeparator() => (RuntimeInformation.IsOSPlatform(OSPlatform.Linux)
+            | RuntimeInformation.IsOSPlatform(OSPlatform.OSX)
+            | RuntimeInformation.IsOSPlatform(OSPlatform.FreeBSD)) ? "unix" : "windows";
 
         #endregion
 	}

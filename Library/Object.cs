@@ -99,7 +99,8 @@ namespace Alexandria.Library.Object
         public static Dictionary<string, string> PathSeparators = new Dictionary<string, string>()
         {
             { "web", "/" },
-            { "unix", "/"}
+            { "unix", "/"},
+            { "windows", "\\" }
         };
 
         /// <summary>
