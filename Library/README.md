@@ -4,7 +4,7 @@ In addition to the wiki tooling, Library provides tools to access your notes fro
 
 ## Environment Setup
 ### Unit Test Setup
-The unit tests for Alexandria include basic traversal of an included test directory, named `TestSource` by default. In order to keep this filepath generalized, an environment variable named `ALX_TESTDIR` is used. If you would like to call it something else, update the variable fetch call on (this line)[https://github.com/jsudar/Alexandria/blob/createLibraryREADME/Library_UnitTests/MethodsTests.cs#L13].
+The unit tests for Alexandria include basic traversal of an included test directory, named `TestSource` by default. In order to keep this filepath generalized, an environment variable named `ALX_TESTDIR` is used. If you would like to call it something else, update the variable fetch call on (this line)[https://github.com/jmsudar/Alexandria/blob/createLibraryREADME/Library_UnitTests/MethodsTests.cs#L13].
 
 Regardless of what you name this variable, set is at a permanent environment variable via the instructions below.
 
